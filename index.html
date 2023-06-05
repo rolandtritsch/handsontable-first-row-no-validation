@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Handsontable - First row not validated</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <h1>Handsontable - First row not validated</h1>
+    <hr>
+
+    <h2>Step 1: Choose and Validate file ...</h2>
+    <label for="csv-file">CSV File:</label>
+    <input type="file" id="csv-file" accept=".csv">
+    <button type="button" id="btn-validate">Validate</button>
+    <button type="button" id="btn-reset">Reset</button>
+    <hr>
+
+    <h2>Step 2: ... see the problem!</h2>
+    <div id="sheet"></div>
+
+    <script src="./src/index.ts"></script>
+    <script src="./src/sheet.ts"></script>
+    <script src="./src/validate.ts"></script>
+  </body>
+</html>

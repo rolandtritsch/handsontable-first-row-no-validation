@@ -22,12 +22,8 @@ validateButton!.addEventListener('click', function handleClick() {
 function loadRows(reader: FileReader): void {
   const rows = csvStrToArray(reader.result as string)
   sheet.loadData(rows)
+  sheet.validateCells()
 }
-
-sheet.addHook('afterLoadData', (sourceData, _initialLoad, _source) => {
-  const allRows = Array.from(Array(sourceData.length).keys())
-  sheet.validateRows(allRows)
-})
 
 sheet.addHook('afterValidate', (isValid, _value, row, _prop) => {
   if (!isValid) {
@@ -39,11 +35,8 @@ sheet.addHook('afterValidate', (isValid, _value, row, _prop) => {
  * Turn a csv-string into and 2D array.
  * @return {string[][]} All the rows/cols (as an 2D array).
  */
-// dummy/first row to work around the bug
-// const dummyRow = '11231231234,01/01/1970'
 function csvStrToArray(str: string, delimiter = ','): string[][] {
   const rawRows = str.split('\n')
-  // rawRows.unshift(dummyRow)
   const rows = rawRows.map(function (rawRow) {
     const row = rawRow.split(delimiter)
     // Add the valid col. Default true
